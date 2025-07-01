@@ -1,0 +1,44 @@
+# -----------------------------------
+# 🌐 General
+.DS_Store
+*.log
+HELP.md
+
+# -----------------------------------
+# ⚙️ Maven
+/target
+.mvn/wrapper/maven-wrapper.jar
+
+# -----------------------------------
+# 🔒 Sensitive files
+application.properties
+.env
+
+# -----------------------------------
+# 🧰 IDE Files (STS, IntelliJ, VS Code, NetBeans)
+# Spring Tool Suite
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+
+# IntelliJ IDEA
+.idea/
+*.iws
+*.iml
+*.ipr
+
+# NetBeans
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+build/
+
+# VS Code
+.vscode/
+

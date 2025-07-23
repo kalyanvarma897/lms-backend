@@ -30,7 +30,7 @@ public class EnrollmentServiceImpl implements EnrollmentService {
         }
         Course course= courseRepository.findById(courseId)
                 .orElseThrow(() -> new RuntimeException("Course not found with id: " + courseId));
-        boolean alreadyEnrolled= enrollmentRepository.existByStudentAndCourse(student, course);
+        boolean alreadyEnrolled= enrollmentRepository.existsByStudentAndCourse(student, course);
         if (alreadyEnrolled) {
             throw new RuntimeException("Student already enrolled in this course");
         }

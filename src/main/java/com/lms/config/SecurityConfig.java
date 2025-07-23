@@ -31,7 +31,7 @@ public class SecurityConfig {
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/auth/**").permitAll()
                         .requestMatchers("/api/courses/**").permitAll()
-                        .requestMatchers("/api/test/**").hasAnyRole("ADMIN", "STUDENT", "MENTOR")
+                        .requestMatchers("/api/test/**").hasAnyRole("ADMIN", "STUDENT", "INSTRUCTOR")
                         .anyRequest().authenticated()
                 )
                 .cors(cors -> cors.configurationSource(corsConfigurationSource()))

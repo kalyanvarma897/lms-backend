@@ -6,33 +6,34 @@ import com.lms.service.AuthService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.Map;
+
 @CrossOrigin(origins = "http://localhost:3000")
 @RestController
 @RequestMapping("/auth")
 public class AuthController {
+
     @Autowired
     private AuthService authService;
 
-    @PostMapping("/signup")
-    public ResponseEntity<String> registerUser(@RequestBody SignUpRequest request){
-        try{
-            String token =authService.registerUser(request);
-            return ResponseEntity.ok(token);
-        }
-        catch (RuntimeException e){
-            return ResponseEntity.badRequest().body(e.getMessage());
-
-        }
-
-    }
     @PostMapping("/login")
-    public ResponseEntity<String> loginUser(@RequestBody LoginRequest request){
-        try{
-            String token=authService.loginUser(request);
-            return ResponseEntity.ok(token);
+    public ResponseEntity<?> loginUser(@RequestBody LoginRequest request) {
+        try {
+            Map<String, String> response = authService.loginUser(request);
+            return ResponseEntity.ok(response);
+        } catch (RuntimeException e) {
+            return ResponseEntity.badRequest().body(Map.of("error", e.getMessage()));
         }
-        catch (RuntimeException e){
-            return ResponseEntity.badRequest().body(e.getMessage());
+    }
+
+    @PostMapping("/signup")
+    public ResponseEntity<?> registerUser(@RequestBody SignUpRequest request) {
+        try {
+            Map<String, String> response = authService.registerUser(request);
+            return ResponseEntity.ok(response);
+        } catch (RuntimeException e) {
+            return ResponseEntity.badRequest().body(Map.of("error", e.getMessage()));
         }
     }
 }
